@@ -21,7 +21,7 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     
     public var imageView:UIImageView!
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
         self.imageView = createImageView()

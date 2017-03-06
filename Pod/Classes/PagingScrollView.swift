@@ -44,12 +44,12 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         setupViews()
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
     
-    convenience init(frame: CGRect, delegate:PagingScrollViewDelegate, dataSource:PagingScrollViewDataSource) {
+    public convenience init(frame: CGRect, delegate:PagingScrollViewDelegate, dataSource:PagingScrollViewDataSource) {
         self.init(frame: frame)
         self.delegate = delegate
         self.dataSource = dataSource
