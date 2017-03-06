@@ -10,6 +10,7 @@ public typealias ZoomingEventBlock = (Void) -> (Void)
 
 import UIKit
 
+@objc
 public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     
     public var singleTapEvent:ZoomingEventBlock?
@@ -27,7 +28,7 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
         self.addSubview(self.imageView!)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupViews()
         self.imageView = createImageView()
@@ -52,7 +53,7 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
         return imageView
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
     
         let boundsSize:CGSize = self.bounds.size;
@@ -120,22 +121,22 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     
     // MARK: - uiscrollview delegate
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         layoutSubviews()
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
     
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         guard let pinchBlock = pinchTapEvent else { return }
         pinchBlock()
     }
     
     // MARK: - touch event
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
         guard let touch = touches.first else { return }

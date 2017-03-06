@@ -8,12 +8,14 @@
 
 import UIKit
 
+@objc
 public protocol PagingScrollViewDelegate {
     func pagingScrollView(_ pagingScrollView:PagingScrollView, willChangedCurrentPage currentPageIndex:NSInteger)
     func pagingScrollView(_ pagingScrollView:PagingScrollView, didChangedCurrentPage currentPageIndex:NSInteger)
     func pagingScrollView(_ pagingScrollView:PagingScrollView, layoutSubview view:UIView);
 }
 
+@objc
 public protocol PagingScrollViewDataSource {
     func pagingScrollView(_ pagingScrollView:PagingScrollView, recycledView view:UIView?, viewForIndex index:NSInteger) -> UIView
     func pagingScrollView(_ pagingScrollView:PagingScrollView, prepareShowPageView view:UIView, viewForIndex index:NSInteger)
@@ -21,6 +23,7 @@ public protocol PagingScrollViewDataSource {
     func numberOfPageWith(pagingScrollView:PagingScrollView) -> NSInteger
 }
 
+@objc
 public class PagingScrollView: UIView, UIScrollViewDelegate {
 
     public var delegate:PagingScrollViewDelegate?
@@ -53,7 +56,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         setupViews()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
     }
@@ -64,7 +67,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         scrollView.removeFromSuperview()
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         adjustLayout()
     }
@@ -201,7 +204,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     
     // MARK: - uiscrollview delegate
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.isDragging else { return }
         
         scrollView.layoutSubviews()
@@ -216,11 +219,11 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         currentPageIndex = index
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.delegate?.pagingScrollView(self, willChangedCurrentPage: currentPageIndex)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         visiblePages.values.filter{ $0.tag != self.currentPageIndex }.forEach{ subPageViewLayout(view: $0) }
     }
     
