@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PGPhotoViewer"
-  s.version          = "0.1.2"
+  s.version          = "0.1.3"
   s.summary          = "Swift Photo Paging & Zooming Viewer."
 
   s.description      = "the simplest photo viewrs with paging & zooming comoponents"
@@ -23,5 +23,5 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'UIKit'
   s.source_files  = 'Pod/Classes/**/*'
-  
+
 end

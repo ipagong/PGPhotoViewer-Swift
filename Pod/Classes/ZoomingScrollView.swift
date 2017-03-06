@@ -1,20 +1,20 @@
 //
-//  PGZoomingScrollView.swift
+//  ZoomingScrollView.swift
 //  PGPhotoSample
 //
 //  Created by ipagong on 2017. 3. 2..
 //  Copyright © 2017년 ipagong. All rights reserved.
 //
 
-public typealias PGZoomEventBlock = (Void) -> (Void)
+public typealias ZoomingEventBlock = (Void) -> (Void)
 
 import UIKit
 
-class PGZoomingScrollView: UIScrollView, UIScrollViewDelegate {
+public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     
-    public var singleTapEvent:PGZoomEventBlock?
-    public var doubleTapEvent:PGZoomEventBlock?
-    public var pinchTapEvent :PGZoomEventBlock?
+    public var singleTapEvent:ZoomingEventBlock?
+    public var doubleTapEvent:ZoomingEventBlock?
+    public var pinchTapEvent :ZoomingEventBlock?
     
     public var zoomMaxScale:CGFloat = 3.0
     

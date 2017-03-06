@@ -10,7 +10,7 @@ import UIKit
 import PGPhotoViewer
 
 class ViewController: UIViewController, PGPagingScrollViewDelegate, PGPagingScrollViewDataSource {
-
+    
     private let pagingControl:PGPagingScrollView = PGPagingScrollView()
     private let samplePhotos = [UIImage(named: "github1"),
                                 UIImage(named: "github2"),

@@ -1,5 +1,5 @@
 //
-//  PGPagingScrollView.swift
+//  PagingScrollView.swift
 //  PGPhotoSample
 //
 //  Created by ipagong on 2017. 3. 2..
@@ -8,23 +8,23 @@
 
 import UIKit
 
-protocol PGPagingScrollViewDelegate {
-    func pagingScrollView(_ pagingScrollView:PGPagingScrollView, willChangedCurrentPage currentPageIndex:NSInteger)
-    func pagingScrollView(_ pagingScrollView:PGPagingScrollView, didChangedCurrentPage currentPageIndex:NSInteger)
-    func pagingScrollView(_ pagingScrollView:PGPagingScrollView, layoutSubview view:UIView);
+public protocol PagingScrollViewDelegate {
+    func pagingScrollView(_ pagingScrollView:PagingScrollView, willChangedCurrentPage currentPageIndex:NSInteger)
+    func pagingScrollView(_ pagingScrollView:PagingScrollView, didChangedCurrentPage currentPageIndex:NSInteger)
+    func pagingScrollView(_ pagingScrollView:PagingScrollView, layoutSubview view:UIView);
 }
 
-protocol PGPagingScrollViewDataSource {
-    func pagingScrollView(_ pagingScrollView:PGPagingScrollView, recycledView view:UIView?, viewForIndex index:NSInteger) -> UIView
-    func pagingScrollView(_ pagingScrollView:PGPagingScrollView, prepareShowPageView view:UIView, viewForIndex index:NSInteger)
-    func startIndexOfPageWith(pagingScrollView:PGPagingScrollView) -> NSInteger
-    func numberOfPageWith(pagingScrollView:PGPagingScrollView) -> NSInteger
+public protocol PagingScrollViewDataSource {
+    func pagingScrollView(_ pagingScrollView:PagingScrollView, recycledView view:UIView?, viewForIndex index:NSInteger) -> UIView
+    func pagingScrollView(_ pagingScrollView:PagingScrollView, prepareShowPageView view:UIView, viewForIndex index:NSInteger)
+    func startIndexOfPageWith(pagingScrollView:PagingScrollView) -> NSInteger
+    func numberOfPageWith(pagingScrollView:PagingScrollView) -> NSInteger
 }
 
-class PGPagingScrollView: UIView, UIScrollViewDelegate {
+public class PagingScrollView: UIView, UIScrollViewDelegate {
 
-    public var delegate:PGPagingScrollViewDelegate?
-    public var dataSource:PGPagingScrollViewDataSource?
+    public var delegate:PagingScrollViewDelegate?
+    public var dataSource:PagingScrollViewDataSource?
     
     private let lockQueue = DispatchQueue(label: "pagong.paging.control.lock")
     
@@ -46,7 +46,7 @@ class PGPagingScrollView: UIView, UIScrollViewDelegate {
         setupViews()
     }
     
-    convenience init(frame: CGRect, delegate:PGPagingScrollViewDelegate, dataSource:PGPagingScrollViewDataSource) {
+    convenience init(frame: CGRect, delegate:PagingScrollViewDelegate, dataSource:PagingScrollViewDataSource) {
         self.init(frame: frame)
         self.delegate = delegate
         self.dataSource = dataSource
