@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "PGPhotoViewer"
-  s.version          = "0.1.1"
-  s.summary          = "Swift Photo Paging Viewer."
+  s.version          = "0.1.2"
+  s.summary          = "Swift Photo Paging & Zooming Viewer."
 
   s.description      = "the simplest photo viewrs with paging & zooming comoponents"
 
@@ -20,15 +20,8 @@ Pod::Spec.new do |s|
 
 
   s.platform     = :ios, '8.0'
-  s.requires_arc = true
 
+  s.frameworks = 'UIKit'
   s.source_files  = 'Pod/Classes/**/*'
   
-  #s.resource_bundles = {
-  #  '${POD_NAME}' => ['Pod/Assets/*.png']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
