@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PGPhotoViewer
 
 class ViewController: UIViewController, PagingScrollViewDelegate, PagingScrollViewDataSource {
     

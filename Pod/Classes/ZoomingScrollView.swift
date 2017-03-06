@@ -36,11 +36,11 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     }
     
     private func setupViews() {
-        self.delegate = self;
+        self.delegate = self
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator   = false
         self.bounces = false
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
         
         self.decelerationRate = UIScrollViewDecelerationRateFast
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -49,51 +49,51 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     public func createImageView() -> UIImageView! {
         let imageView = UIImageView.init()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = UIColor.clear
+        imageView.backgroundColor = .clear
         return imageView
     }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
     
-        let boundsSize:CGSize = self.bounds.size;
-        var imageViewFrame:CGRect = self.imageView.frame;
+        let boundsSize:CGSize = self.bounds.size
+        var imageViewFrame:CGRect = self.imageView.frame
     
         // Horizontally
         if (imageViewFrame.size.width < boundsSize.width) {
-            imageViewFrame.origin.x = floor((boundsSize.width - imageViewFrame.size.width) / 2.0);
+            imageViewFrame.origin.x = floor((boundsSize.width - imageViewFrame.size.width) / 2.0)
         } else {
-            imageViewFrame.origin.x = 0;
+            imageViewFrame.origin.x = 0
         }
     
         // Vertically
         if (imageViewFrame.size.height < boundsSize.height) {
-            imageViewFrame.origin.y = floor((boundsSize.height - imageViewFrame.size.height) / 2.0);
+            imageViewFrame.origin.y = floor((boundsSize.height - imageViewFrame.size.height) / 2.0)
         } else {
-            imageViewFrame.origin.y = 0;
+            imageViewFrame.origin.y = 0
         }
     
-        self.imageView.frame = imageViewFrame;
+        self.imageView.frame = imageViewFrame
     }
     
     public var isZoomed:Bool {
-        return !(self.zoomScale == self.minimumZoomScale);
+        return self.zoomScale != self.minimumZoomScale
     }
     
     public func cleanUp() {
-        self.imageView!.frame = CGRect.zero;
-        self.contentSize = CGSize.zero;
+        self.imageView!.frame = .zero
+        self.contentSize = .zero
     }
     
     public func prepareAfterCompleted() {
         guard let image = self.imageView.image else { return }
         
-        self.contentSize = image.size;
+        self.contentSize = image.size
         
-        var frame = self.imageView.frame;
-        frame.size = image.size;
+        var frame = self.imageView.frame
+        frame.size = image.size
         
-        self.imageView.frame = frame;
+        self.imageView.frame = frame
         self.setMaxMinZoomScalesForCurrentBounds()
     }
     
@@ -105,18 +105,18 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
         let imageSize = self.imageView.bounds.size
         
         // calculate min/max zoomscale
-        let xScale = boundsSize.width  / imageSize.width;    // the scale needed to perfectly fit the image width-wise
-        let yScale = boundsSize.height / imageSize.height;  // the scale needed to perfectly fit the image height-wise
-        let minScale = min(xScale, yScale);                 // use minimum of these to allow the image to become fully visible
+        let xScale = boundsSize.width  / imageSize.width    // the scale needed to perfectly fit the image width-wise
+        let yScale = boundsSize.height / imageSize.height   // the scale needed to perfectly fit the image height-wise
+        let minScale = min(xScale, yScale)                  // use minimum of these to allow the image to become fully visible
         
-        let maxScale = zoomMaxScale * minScale;
+        let maxScale = zoomMaxScale * minScale
         
-        guard minScale != CGFloat.infinity else { return }
-        guard maxScale != CGFloat.infinity else { return }
+        guard minScale != .infinity else { return }
+        guard maxScale != .infinity else { return }
         
-        self.maximumZoomScale = maxScale;
-        self.minimumZoomScale = minScale;
-        self.zoomScale = minScale;
+        self.maximumZoomScale = maxScale
+        self.minimumZoomScale = minScale
+        self.zoomScale = minScale
     }
     
     // MARK: - uiscrollview delegate
@@ -141,7 +141,7 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
         
         guard let touch = touches.first else { return }
         
-        let tapCount = touch.tapCount;
+        let tapCount = touch.tapCount
         
         switch (tapCount) {
         case 1:
@@ -149,13 +149,13 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
         case 2:
             self.handleDoubleTap(touch)
         default:
-            break;
+            break
         }
     }
     
     private func handleSingleTap(_ touch:UITouch) {
         guard let singleBlock = self.singleTapEvent else { return }
-        singleBlock();
+        singleBlock()
     }
     
     private func handleDoubleTap(_ touch:UITouch) {
@@ -165,7 +165,7 @@ public class ZoomingScrollView: UIScrollView, UIScrollViewDelegate {
         // Zoom
         if (self.zoomScale >= self.maximumZoomScale) {
             // Zoom out
-            self.setZoomScale(self.minimumZoomScale, animated: true);
+            self.setZoomScale(self.minimumZoomScale, animated: true)
         } else {
             self.zoom(to: CGRect(x: touchPoint.x, y: touchPoint.y, width: 0, height: 0), animated: true)
         }

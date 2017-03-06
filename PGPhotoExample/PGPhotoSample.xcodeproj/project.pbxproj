@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18EC8C867741E9BB28F3D954 /* Pods_PGPhotoSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8823E7706FB655A1B0E1A35 /* Pods_PGPhotoSample.framework */; };
 		911199791E67B453000B3318 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911199781E67B453000B3318 /* AppDelegate.swift */; };
 		9111997B1E67B453000B3318 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111997A1E67B453000B3318 /* ViewController.swift */; };
 		9111997E1E67B453000B3318 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9111997C1E67B453000B3318 /* Main.storyboard */; };
@@ -22,11 +21,11 @@
 		911D8EAF1E69408F00134C3C /* github7.png in Resources */ = {isa = PBXBuildFile; fileRef = 911D8EA61E69408F00134C3C /* github7.png */; };
 		911D8EB01E69408F00134C3C /* github8.png in Resources */ = {isa = PBXBuildFile; fileRef = 911D8EA71E69408F00134C3C /* github8.png */; };
 		911D8EB11E69408F00134C3C /* github9.png in Resources */ = {isa = PBXBuildFile; fileRef = 911D8EA81E69408F00134C3C /* github9.png */; };
+		91514A8B1E6D4EDE0008A82B /* PagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91514A891E6D4EDE0008A82B /* PagingScrollView.swift */; };
+		91514A8C1E6D4EDE0008A82B /* ZoomingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91514A8A1E6D4EDE0008A82B /* ZoomingScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0904C7B07B2F92B08F196FCE /* Pods-PGPhotoSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGPhotoSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PGPhotoSample/Pods-PGPhotoSample.release.xcconfig"; sourceTree = "<group>"; };
-		3C2A000FB6134500CE90557A /* Pods-PGPhotoSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGPhotoSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PGPhotoSample/Pods-PGPhotoSample.debug.xcconfig"; sourceTree = "<group>"; };
 		911199751E67B453000B3318 /* PGPhotoSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PGPhotoSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		911199781E67B453000B3318 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9111997A1E67B453000B3318 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +42,8 @@
 		911D8EA61E69408F00134C3C /* github7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github7.png; sourceTree = "<group>"; };
 		911D8EA71E69408F00134C3C /* github8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github8.png; sourceTree = "<group>"; };
 		911D8EA81E69408F00134C3C /* github9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github9.png; sourceTree = "<group>"; };
-		C8823E7706FB655A1B0E1A35 /* Pods_PGPhotoSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PGPhotoSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91514A891E6D4EDE0008A82B /* PagingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingScrollView.swift; path = ../../Pod/Classes/PagingScrollView.swift; sourceTree = "<group>"; };
+		91514A8A1E6D4EDE0008A82B /* ZoomingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomingScrollView.swift; path = ../../Pod/Classes/ZoomingScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,29 +51,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18EC8C867741E9BB28F3D954 /* Pods_PGPhotoSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C60BA029A8C9E6178874DA3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3C2A000FB6134500CE90557A /* Pods-PGPhotoSample.debug.xcconfig */,
-				0904C7B07B2F92B08F196FCE /* Pods-PGPhotoSample.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9111996C1E67B453000B3318 = {
 			isa = PBXGroup;
 			children = (
 				911199771E67B453000B3318 /* PGPhotoSample */,
 				911199761E67B453000B3318 /* Products */,
-				3C60BA029A8C9E6178874DA3 /* Pods */,
-				A8DE21BC49C3F80637655CBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +76,7 @@
 		911199771E67B453000B3318 /* PGPhotoSample */ = {
 			isa = PBXGroup;
 			children = (
+				91514A881E6D4E410008A82B /* PhotoViewer */,
 				911D8E9F1E69408F00134C3C /* sample-photos */,
 				911199781E67B453000B3318 /* AppDelegate.swift */,
 				9111997A1E67B453000B3318 /* ViewController.swift */,
@@ -115,12 +104,13 @@
 			path = "sample-photos";
 			sourceTree = "<group>";
 		};
-		A8DE21BC49C3F80637655CBF /* Frameworks */ = {
+		91514A881E6D4E410008A82B /* PhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
-				C8823E7706FB655A1B0E1A35 /* Pods_PGPhotoSample.framework */,
+				91514A891E6D4EDE0008A82B /* PagingScrollView.swift */,
+				91514A8A1E6D4EDE0008A82B /* ZoomingScrollView.swift */,
 			);
-			name = Frameworks;
+			name = PhotoViewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,12 +120,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 911199871E67B453000B3318 /* Build configuration list for PBXNativeTarget "PGPhotoSample" */;
 			buildPhases = (
-				69B43C684ABEEE90A6CBC43D /* [CP] Check Pods Manifest.lock */,
 				911199711E67B453000B3318 /* Sources */,
 				911199721E67B453000B3318 /* Frameworks */,
 				911199731E67B453000B3318 /* Resources */,
-				7B07C8B9F65510C2498A7EF0 /* [CP] Embed Pods Frameworks */,
-				389E82DB2E348BDE396FD857 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,61 +189,15 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		389E82DB2E348BDE396FD857 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PGPhotoSample/Pods-PGPhotoSample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69B43C684ABEEE90A6CBC43D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		7B07C8B9F65510C2498A7EF0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PGPhotoSample/Pods-PGPhotoSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		911199711E67B453000B3318 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9111997B1E67B453000B3318 /* ViewController.swift in Sources */,
+				91514A8B1E6D4EDE0008A82B /* PagingScrollView.swift in Sources */,
 				911199791E67B453000B3318 /* AppDelegate.swift in Sources */,
+				91514A8C1E6D4EDE0008A82B /* ZoomingScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +316,6 @@
 		};
 		911199881E67B453000B3318 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C2A000FB6134500CE90557A /* Pods-PGPhotoSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Headers/**";
@@ -390,7 +330,6 @@
 		};
 		911199891E67B453000B3318 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0904C7B07B2F92B08F196FCE /* Pods-PGPhotoSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Headers/**";

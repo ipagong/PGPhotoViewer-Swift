@@ -9,14 +9,14 @@
 import UIKit
 
 @objc
-public protocol PagingScrollViewDelegate {
+public protocol PagingScrollViewDelegate : NSObjectProtocol {
     func pagingScrollView(_ pagingScrollView:PagingScrollView, willChangedCurrentPage currentPageIndex:NSInteger)
     func pagingScrollView(_ pagingScrollView:PagingScrollView, didChangedCurrentPage currentPageIndex:NSInteger)
     func pagingScrollView(_ pagingScrollView:PagingScrollView, layoutSubview view:UIView);
 }
 
 @objc
-public protocol PagingScrollViewDataSource {
+public protocol PagingScrollViewDataSource : NSObjectProtocol {
     func pagingScrollView(_ pagingScrollView:PagingScrollView, recycledView view:UIView?, viewForIndex index:NSInteger) -> UIView
     func pagingScrollView(_ pagingScrollView:PagingScrollView, prepareShowPageView view:UIView, viewForIndex index:NSInteger)
     func startIndexOfPageWith(pagingScrollView:PagingScrollView) -> NSInteger
@@ -26,8 +26,8 @@ public protocol PagingScrollViewDataSource {
 @objc
 public class PagingScrollView: UIView, UIScrollViewDelegate {
 
-    public var delegate:PagingScrollViewDelegate?
-    public var dataSource:PagingScrollViewDataSource?
+    public weak var delegate:PagingScrollViewDelegate?
+    public weak var dataSource:PagingScrollViewDataSource?
     
     private let lockQueue = DispatchQueue(label: "pagong.paging.control.lock")
     
@@ -40,17 +40,12 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     private let scrollView = UIScrollView()
     
     init() {
-        super.init(frame: CGRect.zero)
+        super.init(frame: .zero)
         setupViews()
     }
     
-    public override init(frame: CGRect) {
+    public init(frame: CGRect, delegate:PagingScrollViewDelegate? = nil, dataSource:PagingScrollViewDataSource? = nil) {
         super.init(frame: frame)
-        setupViews()
-    }
-    
-    public convenience init(frame: CGRect, delegate:PagingScrollViewDelegate, dataSource:PagingScrollViewDataSource) {
-        self.init(frame: frame)
         self.delegate = delegate
         self.dataSource = dataSource
         setupViews()
@@ -80,7 +75,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         scrollView.delegate = self
         scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         scrollView.autoresizesSubviews = true
-        scrollView.backgroundColor = UIColor.clear
+        scrollView.backgroundColor = .clear
         self.addSubview(scrollView)
         
         setupTotalPage()
@@ -91,9 +86,9 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     public private(set) var totalPage:NSInteger = 0
     
     public private(set) var currentPageIndex:NSInteger = 0 {
-        willSet {
-            guard newValue != currentPageIndex else { return }
-            didStartViewingPageAt(index: newValue)
+        didSet {
+            guard oldValue != currentPageIndex else { return }
+            didStartViewingPageAt(index: currentPageIndex)
         }
     }
     
@@ -142,7 +137,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     
     private func configurePageWith(index:NSInteger) {
         guard let dataSource = self.dataSource  else { return }
-        guard (index >= 0 && index < totalPage) else { return }
+        guard index >= 0, index < totalPage else { return }
         
         guard let page = getCurrentPageWith(index: index) else { return }
         
@@ -153,7 +148,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     
     private func getCurrentPageWith(index:NSInteger) -> UIView? {
         guard let dataSource = self.dataSource  else { return nil }
-        guard (index >= 0 && index < totalPage) else { return nil }
+        guard index >= 0, index < totalPage else { return nil }
         
         var page:UIView? = visiblePages[String(index)]
         
@@ -172,7 +167,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     }
     
     private func addPageView(page:UIView, index:NSInteger) {
-        guard (index >= 0 && index < totalPage) else { return }
+        guard index >= 0, index < totalPage else { return }
     
         page.tag = index
         page.frame = CGRect(x: self.contentOffsetForPageAt(index: index).x ,
@@ -183,14 +178,16 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     }
     
     private func didStartViewingPageAt(index:NSInteger) {
-        lockQueue.sync {
+        lockQueue.sync { [weak self] in
+            guard let `self` = self else { return }
+            
             let indexs = [index, index - 1, index + 1]
             
             indexs.forEach { self.configurePageWith(index: $0) }
             
-            visiblePages.values.filter { !indexs.contains($0.tag) }.forEach { prepareRecycle(page: $0) }
+            self.visiblePages.values.filter { !indexs.contains($0.tag) }.forEach { self.prepareRecycle(page: $0) }
             
-            while recyclePages.count > recyclePageCount { recyclePages.removeLast() }
+            while self.recyclePages.count > self.recyclePageCount { self.recyclePages.removeLast() }
             
             self.delegate?.pagingScrollView(self, didChangedCurrentPage: self.currentPageIndex)
         }
@@ -230,7 +227,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     // MARK: - public methods
     
     public func jumpToPage(at index: NSInteger, animated:Bool) {
-        guard (index >= 0 && index < totalPage) else { return }
+        guard index >= 0, index < totalPage else { return }
         
         self.currentPageIndex = index;
         
