@@ -8,13 +8,12 @@
 
 import UIKit
 
-@objc
 protocol PGPagingScrollViewDelegate {
     func pagingScrollView(_ pagingScrollView:PGPagingScrollView, willChangedCurrentPage currentPageIndex:NSInteger)
     func pagingScrollView(_ pagingScrollView:PGPagingScrollView, didChangedCurrentPage currentPageIndex:NSInteger)
     func pagingScrollView(_ pagingScrollView:PGPagingScrollView, layoutSubview view:UIView);
 }
-@objc
+
 protocol PGPagingScrollViewDataSource {
     func pagingScrollView(_ pagingScrollView:PGPagingScrollView, recycledView view:UIView?, viewForIndex index:NSInteger) -> UIView
     func pagingScrollView(_ pagingScrollView:PGPagingScrollView, prepareShowPageView view:UIView, viewForIndex index:NSInteger)
@@ -22,7 +21,6 @@ protocol PGPagingScrollViewDataSource {
     func numberOfPageWith(pagingScrollView:PGPagingScrollView) -> NSInteger
 }
 
-@objc
 class PGPagingScrollView: UIView, UIScrollViewDelegate {
 
     public var delegate:PGPagingScrollViewDelegate?

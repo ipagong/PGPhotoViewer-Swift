@@ -7,8 +7,8 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "PGPhotoViewer-Swift"
-  s.version          = "0.1.0"
+  s.name             = "PGPhotoViewer"
+  s.version          = "0.1.1"
   s.summary          = "Swift Photo Paging Viewer."
 
   s.description      = "the simplest photo viewrs with paging & zooming comoponents"

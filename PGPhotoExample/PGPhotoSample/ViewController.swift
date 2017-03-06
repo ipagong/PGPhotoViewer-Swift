@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PGPhotoViewer_Swift
 
 class ViewController: UIViewController, PGPagingScrollViewDelegate, PGPagingScrollViewDataSource {
 

@@ -10,7 +10,6 @@ public typealias PGZoomEventBlock = (Void) -> (Void)
 
 import UIKit
 
-@objc
 class PGZoomingScrollView: UIScrollView, UIScrollViewDelegate {
     
     public var singleTapEvent:PGZoomEventBlock?
