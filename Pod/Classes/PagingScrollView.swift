@@ -24,7 +24,7 @@ public protocol PagingScrollViewDataSource : NSObjectProtocol {
 }
 
 @objc
-public class PagingScrollView: UIView, UIScrollViewDelegate {
+open class PagingScrollView: UIView, UIScrollViewDelegate {
 
     public weak var delegate:PagingScrollViewDelegate?
     public weak var dataSource:PagingScrollViewDataSource?
@@ -62,7 +62,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         scrollView.removeFromSuperview()
     }
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         adjustLayout()
     }
@@ -226,7 +226,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
     
     // MARK: - public methods
     
-    public func jumpToPage(at index: NSInteger, animated:Bool) {
+    open func jumpToPage(at index: NSInteger, animated:Bool) {
         guard index >= 0, index < totalPage else { return }
         
         self.currentPageIndex = index;
@@ -234,15 +234,15 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         scrollView.setContentOffset(contentOffsetForPageAt(index: index), animated: animated)
     }
     
-    public func goPreviousPage() {
+    open func goPreviousPage() {
         jumpToPage(at: currentPageIndex-1, animated: true)
     }
     
-    public func goNextPage() {
+    open func goNextPage() {
         jumpToPage(at: currentPageIndex+1, animated: true)
     }
     
-    public func reloadData() {
+    open func reloadData() {
         scrollView.subviews.forEach { $0.removeFromSuperview() }
         visiblePages.removeAll()
         recyclePages.removeAll()
@@ -252,7 +252,7 @@ public class PagingScrollView: UIView, UIScrollViewDelegate {
         didStartViewingPageAt(index: currentPageIndex)
     }
     
-    public func pageView(at index:NSInteger) -> UIView? {
+    open func pageView(at index:NSInteger) -> UIView? {
         return visiblePages[String(index)]
     }
 }
