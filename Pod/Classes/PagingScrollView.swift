@@ -178,8 +178,7 @@ open class PagingScrollView: UIView, UIScrollViewDelegate {
     }
     
     private func didStartViewingPageAt(index:NSInteger) {
-        lockQueue.sync { [weak self] in
-            guard let `self` = self else { return }
+        lockQueue.sync { [unowned self] in
             
             let indexs = [index, index - 1, index + 1]
             

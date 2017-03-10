@@ -71,9 +71,9 @@ class ViewController: UIViewController, PagingScrollViewDelegate, PagingScrollVi
     
     func pagingScrollView(_ pagingScrollView:PagingScrollView, prepareShowPageView view:UIView, viewForIndex index:NSInteger) {
         guard let zoomingView = view as? ZoomingScrollView else { return }
+        guard let zoomContentView = zoomingView.targetView as? ZoomContentView else { return }
         
-        // maybe you use it image that downloaded async from somewhere like some cdn.
-        zoomingView.imageView.image = samplePhotos[index]
+        zoomContentView.image = samplePhotos[index]
         
         // just call this methods after set image for resizing.
         zoomingView.prepareAfterCompleted()
